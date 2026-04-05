@@ -1,0 +1,16 @@
+---
+interface Props {
+  code: string;
+}
+
+const { code } = Astro.props;
+---
+
+<div class="mermaid overflow-x-auto py-4 flex justify-center bg-white border border-slate-200 rounded-lg shadow-sm mb-6 my-4">
+  {code}
+</div>
+
+<script>
+  import mermaid from 'mermaid';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'Pretendard, sans-serif' });
+</script>

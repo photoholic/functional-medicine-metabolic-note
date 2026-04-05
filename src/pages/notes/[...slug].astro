@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Mermaid from '../../components/Mermaid.astro';
+import MechanismBox from '../../components/MechanismBox.astro';
+import EvidenceBadge from '../../components/EvidenceBadge.astro';
+
+export async function getStaticPaths() {
+  const notesEntries = await getCollection('notes');
+  return notesEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const formattedDate = new Date(entry.data.date).toLocaleDateString('ko-KR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={entry.data.title}>
+  <article class="prose prose-slate max-w-none prose-headings:font-serif prose-headings:text-deep-navy prose-a:text-forest-green">
+    <div class="mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm font-medium">{entry.data.category}</span>
+        <time class="text-slate-500 text-sm">{formattedDate}</time>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-4">{entry.data.title}</h1>
+      <p class="text-xl text-slate-600 font-medium lead">{entry.data.description}</p>
+    </div>
+
+    <hr class="my-8" />
+
+    <Content components={{ Mermaid, MechanismBox, EvidenceBadge }} />
+  </article>
+</Layout>

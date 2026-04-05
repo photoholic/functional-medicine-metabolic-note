@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="홈">
+  <section class="py-10">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-extrabold text-deep-navy mb-4">기능의학 대사노트</h1>
+      <p class="text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+        인체 대사 경로의 논리적 결함을 추적하고,<br/>
+        영양소의 생화학적 역할을 정밀하게 기록하는 디지털 연구소입니다.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🧬</div>
+        <h3 class="text-xl font-bold text-deep-navy mt-0 mb-2">대사 로직<br/><span class="text-sm text-slate-500 font-normal">Metabolic Logic</span></h3>
+        <p class="text-slate-600 text-sm m-0">인슐린 저항성, 미토콘드리아, 메틸화 등 핵심 기전 분석 및 디버깅.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">💊</div>
+        <h3 class="text-xl font-bold text-deep-navy mt-0 mb-2">영양소 함수<br/><span class="text-sm text-slate-500 font-normal">Nutrient Function</span></h3>
+        <p class="text-slate-600 text-sm m-0">조효소(Cofactors)로서의 영양소 역할과 최적의 타이밍 정의.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🔬</div>
+        <h3 class="text-xl font-bold text-deep-navy mt-0 mb-2">팩트 체크<br/><span class="text-sm text-slate-500 font-normal">Clinical Evidence</span></h3>
+        <p class="text-slate-600 text-sm m-0">최신 기능의학 저널, 임상 데이터 및 전문가 소스 요약.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex justify-between items-end border-b-2 border-slate-100 pb-2 mb-6">
+        <h2 class="text-2xl font-bold text-deep-navy m-0">최근 업데이트</h2>
+        <a href="/archive" class="text-sm font-medium">전체 보기 &rarr;</a>
+      </div>
+
+      <div class="space-y-4">
+        <!-- 임시 더미 데이터. Content Collection 연동 후 교체 예정 -->
+        <a href="/notes/node-01-ages" class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors">당독소(AGEs)와 인슐린 저항성</h3>
+            <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">대사 로직</span>
+          </div>
+          <p class="text-slate-600 text-sm line-clamp-2 m-0">당독소가 RAGE 수용체와 결합하여 ROS를 생성하고, 이는 IRS-1의 인산화를 방해하여 인슐린 신호를 차단하는 기전.</p>
+        </a>
+
+        <a href="/notes/node-02-mitochondria" class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors">미토콘드리아 에너지 대사와 마그네슘</h3>
+            <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">대사 로직</span>
+          </div>
+          <p class="text-slate-600 text-sm line-clamp-2 m-0">만성 피로의 해결은 단순 칼로리 섭취가 아닌 마그네슘을 통한 에너지 전환 효율 최적화에 있습니다.</p>
+        </a>
+
+        <a href="/notes/nutrients-schedule" class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors">기능의학적 영양제 스케줄</h3>
+            <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">영양소 함수</span>
+          </div>
+          <p class="text-slate-600 text-sm line-clamp-2 m-0">오전 에너지 부스팅, 점심 지용성 비타민 흡수, 상시 항산화 관리를 위한 기능의학 영양제 복용 타임라인.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

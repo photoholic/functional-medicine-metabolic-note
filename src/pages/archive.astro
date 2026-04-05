@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes');
+const sortedNotes = allNotes.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+// 카테고리별로 분류 (대사 로직, 영양소 함수, 팩트 체크 등)
+const categories = [...new Set(allNotes.map((note) => note.data.category))];
+---
+
+<Layout title="Archive">
+  <div class="mb-10">
+    <h1 class="text-4xl font-extrabold text-deep-navy mb-4">Archive</h1>
+    <p class="text-slate-600">모든 연구 노트를 기전별, 영양소별로 탐색합니다.</p>
+  </div>
+
+  {categories.map((category) => (
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-deep-navy mb-6 pb-2 border-b-2 border-slate-100">{category}</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        {sortedNotes
+          .filter((note) => note.data.category === category)
+          .map((note) => (
+            <a href={`/notes/${note.id}`} class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+              <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors mb-2">{note.data.title}</h3>
+              <p class="text-slate-600 text-sm line-clamp-2 m-0">{note.data.description}</p>
+            </a>
+          ))}
+      </div>
+    </div>
+  ))}
+</Layout>

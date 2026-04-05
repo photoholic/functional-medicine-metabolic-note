@@ -1,0 +1,29 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "Mechanism" } = Astro.props;
+---
+
+<div class="my-6 border-l-4 border-deep-navy bg-slate-50 p-5 rounded-r-lg shadow-sm">
+  <div class="flex items-center gap-2 mb-3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-deep-navy">
+      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+      <polyline points="14 2 14 8 20 8" />
+      <path d="M12 18v-6" />
+      <path d="m9 15 3 3 3-3" />
+    </svg>
+    <h4 class="font-bold text-lg text-deep-navy m-0">{title}</h4>
+  </div>
+  <div class="text-slate-700 leading-relaxed mechanism-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* Ensure paragraph inside mechanism box doesn't have bottom margin if it's the last child */
+  .mechanism-content > :last-child {
+    margin-bottom: 0;
+  }
+</style>

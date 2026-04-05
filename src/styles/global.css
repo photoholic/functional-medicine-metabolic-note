@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-navy: #1A2A6C;
+  --color-forest-green: #2D5A27;
+
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-[#F9FAFB] text-slate-800 antialiased leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-deep-navy font-bold tracking-tight mb-4;
+  }
+
+  h1 { @apply text-4xl; }
+  h2 { @apply text-3xl mt-8; }
+  h3 { @apply text-2xl mt-6; }
+
+  p { @apply mb-4; }
+
+  a {
+    @apply text-forest-green hover:text-deep-navy transition-colors underline decoration-1 underline-offset-4;
+  }
+
+  ul { @apply list-disc pl-6 mb-4; }
+  ol { @apply list-decimal pl-6 mb-4; }
+  li { @apply mb-1; }
+
+  hr { @apply my-8 border-slate-200; }
+
+  strong { @apply font-semibold text-deep-navy; }
+}
