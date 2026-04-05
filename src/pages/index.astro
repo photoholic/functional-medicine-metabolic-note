@@ -35,12 +35,12 @@ import Layout from '../layouts/Layout.astro';
     <div>
       <div class="flex justify-between items-end border-b-2 border-slate-100 pb-2 mb-6">
         <h2 class="text-2xl font-bold text-deep-navy m-0">최근 업데이트</h2>
-        <a href="/archive" class="text-sm font-medium">전체 보기 &rarr;</a>
+        <a href={`${import.meta.env.BASE_URL}archive`} class="text-sm font-medium">전체 보기 &rarr;</a>
       </div>
 
       <div class="space-y-4">
         <!-- 임시 더미 데이터. Content Collection 연동 후 교체 예정 -->
-        <a href="/notes/node-01-ages" class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+        <a href={`${import.meta.env.BASE_URL}notes/node-01-ages`} class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
           <div class="flex justify-between items-start mb-2">
             <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors">당독소(AGEs)와 인슐린 저항성</h3>
             <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">대사 로직</span>
@@ -48,7 +48,7 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-slate-600 text-sm line-clamp-2 m-0">당독소가 RAGE 수용체와 결합하여 ROS를 생성하고, 이는 IRS-1의 인산화를 방해하여 인슐린 신호를 차단하는 기전.</p>
         </a>
 
-        <a href="/notes/node-02-mitochondria" class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+        <a href={`${import.meta.env.BASE_URL}notes/node-02-mitochondria`} class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
           <div class="flex justify-between items-start mb-2">
             <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors">미토콘드리아 에너지 대사와 마그네슘</h3>
             <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">대사 로직</span>
@@ -56,7 +56,7 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-slate-600 text-sm line-clamp-2 m-0">만성 피로의 해결은 단순 칼로리 섭취가 아닌 마그네슘을 통한 에너지 전환 효율 최적화에 있습니다.</p>
         </a>
 
-        <a href="/notes/nutrients-schedule" class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
+        <a href={`${import.meta.env.BASE_URL}notes/nutrients-schedule`} class="block bg-white p-5 rounded-lg border border-slate-200 hover:border-forest-green transition-colors no-underline group">
           <div class="flex justify-between items-start mb-2">
             <h3 class="text-lg font-bold text-deep-navy m-0 group-hover:text-forest-green transition-colors">기능의학적 영양제 스케줄</h3>
             <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">영양소 함수</span>
