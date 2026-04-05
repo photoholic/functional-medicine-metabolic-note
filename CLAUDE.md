@@ -1,91 +1,91 @@
 # CLAUDE.md
 
-## Project Overview
+## 프로젝트 개요
 
-Astro-based static site documenting functional medicine and metabolic health research in Korean. Deployed to GitHub Pages at `https://photoholic.github.io/functional-medicine-metabolic-note`.
+기능의학과 대사 건강 연구를 정리한 Astro 기반 정적 사이트. GitHub Pages(`https://photoholic.github.io/functional-medicine-metabolic-note`)에 배포됨.
 
-## Quick Reference
+## 빠른 참고
 
 ```bash
-npm run dev       # Start dev server
-npm run build     # Production build → /dist
-npm run preview   # Preview production build
+npm run dev       # 개발 서버 실행
+npm run build     # 프로덕션 빌드 → /dist
+npm run preview   # 프로덕션 빌드 미리보기
 ```
 
-**Requires Node.js >= 22.12.0**
+**Node.js >= 22.12.0 필요**
 
-## Tech Stack
+## 기술 스택
 
-- **Framework:** Astro 6.x with MDX integration
-- **Styling:** Tailwind CSS 4.x (via Vite plugin)
-- **Diagrams:** Mermaid 11.x (client-side rendering)
-- **Language:** TypeScript (strict mode, extends `astro/tsconfigs/strict`)
-- **Deployment:** GitHub Actions → GitHub Pages (on push to `main`)
+- **프레임워크:** Astro 6.x + MDX 통합
+- **스타일링:** Tailwind CSS 4.x (Vite 플러그인)
+- **다이어그램:** Mermaid 11.x (클라이언트 사이드 렌더링)
+- **언어:** TypeScript (strict 모드, `astro/tsconfigs/strict` 확장)
+- **배포:** GitHub Actions → GitHub Pages (`main` 브랜치 push 시 자동 배포)
 
-## Directory Structure
+## 디렉토리 구조
 
 ```
 src/
-├── components/          # Reusable Astro components
-│   ├── EvidenceBadge.astro   # Source reliability badges (high/medium/low/note)
-│   ├── MechanismBox.astro    # Highlighted mechanism explanation boxes
-│   ├── Mermaid.astro         # Mermaid diagram wrapper
-│   ├── Header.astro          # Sticky nav header
-│   └── Footer.astro          # Site footer
+├── components/          # 재사용 가능한 Astro 컴포넌트
+│   ├── EvidenceBadge.astro   # 근거 신뢰도 배지 (high/medium/low/note)
+│   ├── MechanismBox.astro    # 기전 설명 강조 박스
+│   ├── Mermaid.astro         # Mermaid 다이어그램 래퍼
+│   ├── Header.astro          # 상단 고정 네비게이션
+│   └── Footer.astro          # 하단 푸터
 ├── content/
-│   └── notes/           # MDX content collection (glob loader)
+│   └── notes/           # MDX 콘텐츠 컬렉션 (glob 로더)
 ├── layouts/
-│   └── Layout.astro     # Master layout (Korean fonts, meta, Header/Footer)
+│   └── Layout.astro     # 마스터 레이아웃 (한글 폰트, 메타, Header/Footer)
 ├── pages/
-│   ├── index.astro      # Homepage with hero + feature cards
-│   ├── archive.astro    # All notes grouped by category
-│   ├── about.astro      # Philosophy & references
+│   ├── index.astro      # 홈페이지 (히어로 + 기능 카드)
+│   ├── archive.astro    # 카테고리별 전체 노트 목록
+│   ├── about.astro      # 철학 및 참고 자료
 │   └── notes/
-│       └── [...slug].astro  # Dynamic note detail pages
+│       └── [...slug].astro  # 노트 상세 페이지 (동적 라우팅)
 ├── styles/
-│   └── global.css       # Tailwind theme config + base styles
-└── content.config.ts    # Content collection schema (Zod)
+│   └── global.css       # Tailwind 테마 설정 + 기본 스타일
+└── content.config.ts    # 콘텐츠 컬렉션 스키마 (Zod)
 ```
 
-## Content Collection Schema
+## 콘텐츠 컬렉션 스키마
 
-Notes live in `src/content/notes/*.mdx`. Required frontmatter:
+노트 파일 위치: `src/content/notes/*.mdx`. 필수 프론트매터:
 
 ```yaml
-title: "string"
-description: "string"
-date: "YYYY-MM-DD"        # Parsed as Date
-category: "대사 로직"      # One of: 대사 로직 | 영양소 함수 | 팩트 체크 | 식단 가이드
-tags: ["optional", "array"]
+title: "문자열"
+description: "문자열"
+date: "YYYY-MM-DD"        # Date 타입으로 자동 변환
+category: "대사 로직"      # 허용값: 대사 로직 | 영양소 함수 | 팩트 체크 | 식단 가이드
+tags: ["선택", "배열"]     # 선택 사항
 ```
 
-Schema is defined in `src/content.config.ts` using Zod with `glob` loader.
+스키마는 `src/content.config.ts`에서 Zod + `glob` 로더로 정의됨.
 
-## Key Conventions
+## 핵심 규칙
 
-### Routing & Links
+### 라우팅 & 링크
 
-All internal links **must** use `${import.meta.env.BASE_URL}` prefix for GitHub Pages subpath compatibility:
+모든 내부 링크는 GitHub Pages 하위 경로 호환을 위해 **반드시** `${import.meta.env.BASE_URL}` 접두사를 사용해야 함:
 
 ```astro
-<a href={`${import.meta.env.BASE_URL}/archive`}>Archive</a>
+<a href={`${import.meta.env.BASE_URL}/archive`}>아카이브</a>
 ```
 
-Dynamic note routes use the content entry `id` (filename without `.mdx`) as the slug.
+동적 노트 라우트는 콘텐츠 항목의 `id`(`.mdx` 확장자 제외한 파일명)를 slug로 사용.
 
-### Styling
+### 스타일링
 
-- **Design tokens:** `--color-deep-navy: #1A2A6C` (headings, CTAs), `--color-forest-green: #2D5A27` (links, hovers)
-- **Fonts:** Pretendard (body, sans), Noto Serif KR (headings, serif) — loaded via CDN in Layout.astro
-- **Approach:** Tailwind utility classes throughout; custom tokens defined in `global.css`
+- **디자인 토큰:** `--color-deep-navy: #1A2A6C` (제목, CTA), `--color-forest-green: #2D5A27` (링크, 호버)
+- **폰트:** Pretendard (본문, sans), Noto Serif KR (제목, serif) — Layout.astro에서 CDN 로드
+- **방식:** Tailwind 유틸리티 클래스 사용; 커스텀 토큰은 `global.css`에서 정의
 
-### Components in MDX
+### MDX 내 컴포넌트 사용법
 
-Content files use three custom components inline:
+콘텐츠 파일에서 3가지 커스텀 컴포넌트를 인라인으로 사용:
 
 ```mdx
 <MechanismBox title="제목">
-  Markdown content explaining a biological mechanism.
+  생물학적 기전을 설명하는 마크다운 내용.
 </MechanismBox>
 
 <EvidenceBadge source="임상 데이터" reliability="high" href="https://..." />
@@ -95,23 +95,23 @@ Content files use three custom components inline:
 `} />
 ```
 
-### Language
+### 언어
 
-- All UI text is Korean with occasional English subtitles (e.g., "대사 로직 / Metabolic Logic")
-- Content is written in Korean
+- 모든 UI 텍스트는 한국어로 작성하며, 필요시 영어 부제를 병기 (예: "대사 로직 / Metabolic Logic")
+- 콘텐츠는 한국어로 작성
 
-### Naming
+### 네이밍 규칙
 
-- Components: `PascalCase.astro`
-- Content files: `kebab-case.mdx`
-- Pages: `kebab-case.astro`
+- 컴포넌트: `PascalCase.astro`
+- 콘텐츠 파일: `kebab-case.mdx`
+- 페이지: `kebab-case.astro`
 
 ## CI/CD
 
-`.github/workflows/deploy.yml` auto-deploys to GitHub Pages on push to `main`:
-1. Checkout → Setup Node 22 → `npm install` → `npm run build`
-2. Upload `/dist` artifact → Deploy to Pages
+`.github/workflows/deploy.yml`이 `main` 브랜치 push 시 GitHub Pages에 자동 배포:
+1. 코드 체크아웃 → Node 22 설정 → `npm install` → `npm run build`
+2. `/dist` 아티팩트 업로드 → Pages 배포
 
-## No Testing or Linting
+## 테스트 및 린트 미설정
 
-There is currently no test framework, linter, or formatter configured. Validate changes by running `npm run build` to ensure the site builds without errors.
+현재 테스트 프레임워크, 린터, 포맷터가 설정되어 있지 않음. 변경사항 검증은 `npm run build`로 빌드 오류 여부를 확인.
